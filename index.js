@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 
 app.post("/", async (req, res) => {
     const data = req.body;
-    const sender = data.pusher.name;
-    const branch = data.repository.master_branch;
+    const sender = data.head_commit.author.username;
+    const branch = data.ref.replace("refs/heads/", "");
     const commit = data.head_commit.message;
     const commit_url = data.head_commit.url;
     const commits = data.commits.length;
